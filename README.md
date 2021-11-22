@@ -165,6 +165,97 @@ HanziSimilarBs 中允许自定义的配置列表如下：
 
 所以目前采用的是实时计算，有时间做一下其他语言的迁移 :) 
 
+# 实现原理
+
+## 实现思路
+
+不同于文本相似度，汉字相似度的单位是汉字。
+
+所以相似度是对于汉字的拆解，比如笔画，拼音，部首，结构等。
+
+推荐阅读：
+
+> [NLP 中文形近字相似度计算思路](https://houbb.github.io/2020/01/20/nlp-chinese-similar-char)
+
+计算思路描述了实现的原理，但是小伙伴反应不会实现，于是才有了本项目。
+
+## 核心代码
+
+核心实现如下，就是各种相似度，进行加权计算。
+
+```java
+/**
+ * 相似度
+ *
+ * @param context 上下文
+ * @return 结果
+ * @since 1.0.0
+ */
+@Override
+public double similar(final IHanziSimilarContext context) {
+    final String charOne = context.charOne();
+    final String charTwo = context.charTwo();
+
+    //1. 是否相同
+    if(charOne.equals(charTwo)) {
+        return 1.0;
+    }
+
+    //2. 是否用户自定义
+    Map<String, Double> defineMap = context.userDefineData().dataMap();
+    String defineKey = charOne+charTwo;
+    if(defineMap.containsKey(defineKey)) {
+        return defineMap.get(defineKey);
+    }
+
+    //3. 通过权重计算获取
+    //3.1 四角编码
+    IHanziSimilar sijiaoSimilar = context.sijiaoSimilar();
+    double sijiaoScore = sijiaoSimilar.similar(context);
+
+    //3.2 结构
+    IHanziSimilar jiegouSimilar = context.jiegouSimilar();
+    double jiegouScore = jiegouSimilar.similar(context);
+
+    //3.3 部首
+    IHanziSimilar bushouSimilar = context.bushouSimilar();
+    double bushouScore = bushouSimilar.similar(context);
+
+    //3.4 笔画
+    IHanziSimilar biahuashuSimilar = context.bihuashuSimilar();
+    double bihuashuScore = biahuashuSimilar.similar(context);
+
+    //3.5 拼音
+    IHanziSimilar pinyinSimilar = context.pinyinSimilar();
+    double pinyinScore = pinyinSimilar.similar(context);
+
+    //4. 计算总分
+    double totalScore = sijiaoScore + jiegouScore + bushouScore + bihuashuScore + pinyinScore;
+    //4.1 避免浮点数比较问题
+    if(totalScore <= 0) {
+        return 0;
+    }
+
+    //4.2 正则化
+    double limitScore = context.sijiaoRate() + context.jiegouRate()
+            + context.bushouRate() + context.bihuashuRate() + context.pinyinRate();
+
+    return totalScore / limitScore;
+}
+```
+
+具体的细节，如果感兴趣，可以自行阅读源码。
+
+## 开源地址
+
+为了便于大家的学习和使用，本项目已开源。
+
+开源地址：
+
+> [https://github.com/houbb/nlp-hanzi-similar](https://github.com/houbb/nlp-hanzi-similar)
+
+欢迎大家，fork&star 鼓励一下老马~
+
 # 后期 Road-MAP
 
 - [ ] 丰富相似度策略
