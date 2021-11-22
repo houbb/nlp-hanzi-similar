@@ -131,8 +131,44 @@ HanziSimilarBs 中允许自定义的配置列表如下：
 
 所有的配置都可以基于接口，用户进行自定义。
 
+# 快速体验
+
+## 说明
+
+如果 java 语言不是你的主要开发语言，你可以通过下面的 exe 文件快速体验一下。
+
+## 下载地址
+
+> [https://github.com/houbb/nlp-hanzi-similar/releases/download/exe/hanzi-similar.zip](https://github.com/houbb/nlp-hanzi-similar/releases/download/exe/hanzi-similar.zip)
+
+下载后直接解压得到 `hanzi-similar.exe` 免安装的可执行文件。
+
+## 执行效果
+
+界面是使用 java swing 实现的，所以美观什么的，已经完全放弃治疗 T_T。
+
+使用 exe4j 打包。
+
+字符一输入一个汉字，字符二输入另一个汉字，点击计算，则可以获取对应的相似度。
+
+![similar-execute](similar-execute.png)
+
+# 字典的弊端
+
+这个项目开源，是因为有一位小伙伴有相关的需求，但是他不懂 java。
+
+一开始想把项目设计成为字典的形式，两个字对应一个相似度。
+
+但是有一个问题，2W 汉字，和 2W 汉字的相似度字典，数量已经是近亿的数据量。
+
+空间复杂度过高，同时会导致时间复杂度问题。
+
+所以目前采用的是实时计算，有时间做一下其他语言的迁移 :) 
+
 # 后期 Road-MAP
 
 - [ ] 丰富相似度策略
 
 - [ ] 优化默认权重 
+
+- [ ] 优化 exe 界面
