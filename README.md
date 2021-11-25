@@ -20,6 +20,14 @@
 
 本项目旨在抛砖引玉，实现一个基本的相似度计算工具，为汉字 NLP 贡献一点绵薄之力。
 
+推荐阅读：
+
+[NLP 中文形近字相似度计算思路](https://mp.weixin.qq.com/s/i3h_15kYRb89MsApZ5nwPQ)
+
+[中文形近字相似度算法实现，为汉字 NLP 尽一点绵薄之力](https://mp.weixin.qq.com/s/pDt3R04-XWKSvo1hJpTSDg)
+
+[当代中国最贵的汉字是什么？](https://mp.weixin.qq.com/s/SETYeJchvWuqicrHLgG2mQ)
+
 ## 特性
 
 - fluent 方法，一行代码搞定一切

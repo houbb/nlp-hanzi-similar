@@ -27,4 +27,10 @@ public class HanziSimilarHelperTest {
         System.out.println(rate);
     }
 
+    @Test
+    public void test() {
+        //[月丷夫马言卂]
+        System.out.println(ChaiziHelper.chai("腾讯"));
+    }
+
 }
