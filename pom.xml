@@ -4,7 +4,7 @@
 
     <groupId>com.github.houbb</groupId>
     <artifactId>nlp-hanzi-similar</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <!--============================== All Plugins START ==============================-->
@@ -123,30 +123,12 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${plugin.maven-javadoc-plugin.version}</version>
             </plugin>
-
-            <plugin>
-                <groupId>com.github.houbb</groupId>
-                <artifactId>idoc-core</artifactId>
-                <version>0.2.0-SNAPSHOT</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.github.houbb</groupId>
-                        <artifactId>idoc-ftl</artifactId>
-                        <version>0.2.0-SNAPSHOT</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <generates>
-                        <generate>com.github.houbb.idoc.ftl.api.generator.MarkdownDocGenerator</generate>
-                    </generates>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <!--============================== ADD For sonatype START ==============================-->
     <name>nlp-hanzi-similar</name>
-    <description>Collect base useful tools for dev.</description>
+    <description>The nlp hanzi simiar tool.</description>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>

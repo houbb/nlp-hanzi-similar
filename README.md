@@ -30,7 +30,7 @@
 
 - 丰富的实现策略
 
-默认实现了基于 四角编码+拼音+汉字结构+汉字偏旁+笔画数 的相似度比较。
+默认实现了基于 四角编码+拼音+汉字结构+汉字偏旁+笔画数+拆字 的相似度比较。
 
 # 变更日志
 
@@ -136,6 +136,144 @@ HanziSimilarBs 中允许自定义的配置列表如下：
 | 19 | chaiziSimlar | 拆字相似度 |
 
 所有的配置都可以基于接口，用户进行自定义。
+
+# python 版本
+
+## 说明
+
+NLP 的很多小伙伴都是 python 语言的使用者。
+
+为了便于大家学习，提供了 python 的简易版本实现，可以自行修改。
+
+> [python 版本](https://github.com/houbb/nlp-hanzi-similar/releases/tag/pythn)
+
+## 实现
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+'''
+desc: 初始化字典
+author: 老马啸西风
+date: 2021-11-24
+'''
+def initDict(path):
+   dict = {}; 
+   with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+        for line in f.readlines():
+            # 移除换行符，并且根据空格拆分
+            splits = line.strip('\n').split(' ');
+            key = splits[0];
+            value = splits[1];
+            dict[key] = value; 
+   return dict;
+   
+# 字典初始化 
+bihuashuDict = initDict('./db/bihuashu_2w.txt');
+hanzijiegouDict = initDict('./db/hanzijiegou_2w.txt');
+pianpangbushouDict = initDict('./db/pianpangbushou_2w.txt');
+sijiaobianmaDict = initDict('./db/sijiaobianma_2w.txt');
+
+# 权重定义（可自行调整）
+hanzijiegouRate = 10;
+sijiaobianmaRate = 8;
+pianpangbushouRate = 6;
+bihuashuRate = 2;
+
+# 计算核心方法
+'''
+desc: 笔画数相似度
+'''
+def bihuashuSimilar(charOne, charTwo): 
+    valueOne = bihuashuDict[charOne];
+    valueTwo = bihuashuDict[charTwo];
+    
+    numOne = int(valueOne);
+    numTwo = int(valueTwo);
+    
+    diffVal = 1 - abs((numOne - numTwo) / max(numOne, numTwo));
+    return bihuashuRate * diffVal * 1.0;
+
+    
+'''
+desc: 汉字结构数相似度
+'''
+def hanzijiegouSimilar(charOne, charTwo): 
+    valueOne = hanzijiegouDict[charOne];
+    valueTwo = hanzijiegouDict[charTwo];
+    
+    if valueOne == valueTwo:
+        # 后续可以优化为相近的结构
+        return hanzijiegouRate * 1;
+    return 0;
+    
+'''
+desc: 四角编码相似度
+'''
+def sijiaobianmaSimilar(charOne, charTwo): 
+    valueOne = sijiaobianmaDict[charOne];
+    valueTwo = sijiaobianmaDict[charTwo];
+    
+    totalScore = 0.0;
+    minLen = min(len(valueOne), len(valueTwo));
+    
+    for i in range(minLen):
+        if valueOne[i] == valueTwo[i]:
+            totalScore += 1.0;
+    
+    totalScore = totalScore / minLen * 1.0;
+    return totalScore * sijiaobianmaRate;
+
+'''
+desc: 偏旁部首相似度
+'''
+def pianpangbushoutSimilar(charOne, charTwo): 
+    valueOne = pianpangbushouDict[charOne];
+    valueTwo = pianpangbushouDict[charTwo];
+    
+    if valueOne == valueTwo:
+        # 后续可以优化为字的拆分
+        return pianpangbushouRate * 1;
+    return 0;  
+    
+'''
+desc: 计算两个汉字的相似度
+'''
+def similar(charOne, charTwo):
+    if charOne == charTwo:
+        return 1.0;
+    
+    sijiaoScore = sijiaobianmaSimilar(charOne, charTwo);    
+    jiegouScore = hanzijiegouSimilar(charOne, charTwo);
+    bushouScore = pianpangbushoutSimilar(charOne, charTwo);
+    bihuashuScore = bihuashuSimilar(charOne, charTwo);
+    
+    totalScore = sijiaoScore + jiegouScore + bushouScore + bihuashuScore;    
+    totalRate = hanzijiegouRate + sijiaobianmaRate + pianpangbushouRate + bihuashuRate;
+    
+    
+    result = totalScore*1.0 / totalRate * 1.0;
+    print('总分：' + str(totalScore) + ', 总权重: ' + str(totalRate) +', 结果:' + str(result));
+    print('四角编码：' + str(sijiaoScore));
+    print('汉字结构：' + str(jiegouScore));
+    print('偏旁部首：' + str(bushouScore));
+    print('笔画数：' + str(bihuashuScore));
+    return result;
+
+# 这里 末 未 相似度为1，因为没有拼音的差异。四角编码一致。
+# 可以手动替换下面的字，或者读取文件，循环计算
+'''
+$ python main.py
+总分：25.428571428571427, 总权重: 26, 结果:0.978021978021978
+四角编码：8.0
+汉字结构：10
+偏旁部首：6
+笔画数：1.4285714285714286
+'''
+
+similar('末', '来')
+``` 
 
 # 快速体验
 
