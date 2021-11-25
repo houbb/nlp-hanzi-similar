@@ -1,8 +1,6 @@
 package com.github.houbb.nlp.hanzi.similar.support.similar;
 
-import com.github.houbb.heaven.util.lang.CharUtil;
 import com.github.houbb.heaven.util.util.ArrayPrimitiveUtil;
-import com.github.houbb.heaven.util.util.ArrayUtil;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilar;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
 import com.github.houbb.nlp.hanzi.similar.util.ChaiziHelper;

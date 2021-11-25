@@ -9,6 +9,12 @@ import org.junit.Test;
 public class HanziSimilarHelperTest {
 
     @Test
+    public void helloTest() {
+        double rate1 = HanziSimilarHelper.similar('末', '未');
+        System.out.println(rate1);
+    }
+
+    @Test
     public void similarTest() {
         double rate1 = HanziSimilarHelper.similar('末', '未');
         double rate2 = HanziSimilarHelper.similar('末', '木');
@@ -30,7 +36,7 @@ public class HanziSimilarHelperTest {
     @Test
     public void test() {
         //[月丷夫马言卂]
-        System.out.println(ChaiziHelper.chai("腾讯"));
+        System.out.println(ChaiziHelper.chai("腾讯的微信"));
     }
 
 }
