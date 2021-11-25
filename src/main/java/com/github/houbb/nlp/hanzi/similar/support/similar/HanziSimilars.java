@@ -51,4 +51,13 @@ public final class HanziSimilars {
         return Instances.singleton(SijiaoSimilar.class);
     }
 
+    /**
+     * 拆字
+     * @return 实现
+     * @since 1.1.0
+     */
+    public static IHanziSimilar chaizi() {
+        return Instances.singleton(ChaiziSimilar.class);
+    }
+
 }

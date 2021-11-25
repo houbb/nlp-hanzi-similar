@@ -21,6 +21,11 @@ public class HanziSimilarRateConst {
     public static final double SIJIAO = 8.0;
 
     /**
+     * 拆字
+     */
+    public static final double CHAIZI = 6.0;
+
+    /**
      * 偏旁部首
      */
     public static final double BUSHOU = 6.0;

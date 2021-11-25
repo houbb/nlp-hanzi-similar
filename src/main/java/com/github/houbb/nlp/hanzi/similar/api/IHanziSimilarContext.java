@@ -81,6 +81,18 @@ public interface IHanziSimilarContext {
     double pinyinRate();
 
     /**
+     * 拆字相似度计算
+     * @return 相似度计算
+     */
+    IHanziSimilar chaiziSimiar();
+
+    /**
+     * 拆字比例
+     * @return 比例
+     */
+    double chaiziRate();
+
+    /**
      * 用户自定义 数据
      * @return 数据
      */

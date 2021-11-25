@@ -95,6 +95,16 @@ public class HanziSimilarContext implements IHanziSimilarContext {
      */
     private IHanziSimilar pinyinSimilar;
 
+    /**
+     * 拆字相似度计算
+     */
+    private IHanziSimilar chaiziSimiar;
+
+    /**
+     * 拆字比例
+     */
+    private double chaiziRate;
+
     @Override
     public String charOne() {
         return charOne;
@@ -262,6 +272,26 @@ public class HanziSimilarContext implements IHanziSimilarContext {
 
     public HanziSimilarContext pinyinSimilar(IHanziSimilar pinyinSimilar) {
         this.pinyinSimilar = pinyinSimilar;
+        return this;
+    }
+
+    @Override
+    public IHanziSimilar chaiziSimiar() {
+        return chaiziSimiar;
+    }
+
+    public HanziSimilarContext chaiziSimiar(IHanziSimilar chaiziSimiar) {
+        this.chaiziSimiar = chaiziSimiar;
+        return this;
+    }
+
+    @Override
+    public double chaiziRate() {
+        return chaiziRate;
+    }
+
+    public HanziSimilarContext chaiziRate(double chaiziRate) {
+        this.chaiziRate = chaiziRate;
         return this;
     }
 }

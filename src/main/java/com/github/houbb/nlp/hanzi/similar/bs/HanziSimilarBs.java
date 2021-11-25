@@ -96,7 +96,19 @@ public final class HanziSimilarBs {
     private IHanziSimilar pinyinSimilar = HanziSimilars.pinyin();
 
     /**
+     * 拆字占比
+     */
+    private double chaiziRate = HanziSimilarRateConst.CHAIZI;
+
+    /**
+     * 拆字相似度实现
+     * @since 1.1.0
+     */
+    private IHanziSimilar chaiziSimilar = HanziSimilars.chaizi();
+
+    /**
      * 核心实现
+     * @since 1.1.0
      */
     private IHanziSimilar hanziSimilar = Instances.singleton(HanziSimilar.class);
 
@@ -183,6 +195,16 @@ public final class HanziSimilarBs {
         return this;
     }
 
+    public HanziSimilarBs chaiziRate(double chaiziRate) {
+        this.chaiziRate = chaiziRate;
+        return this;
+    }
+
+    public HanziSimilarBs chaiziSimilar(IHanziSimilar chaiziSimilar) {
+        this.chaiziSimilar = chaiziSimilar;
+        return this;
+    }
+
     public HanziSimilarBs hanziSimilar(IHanziSimilar hanziSimilar) {
         this.hanziSimilar = hanziSimilar;
         return this;
@@ -222,7 +244,9 @@ public final class HanziSimilarBs {
                 .sijiaoRate(sijiaoRate)
                 .sijiaoSimilar(sijiaoSimilar)
                 .pinyinRate(pinyinRate)
-                .pinyinSimilar(pinyinSimilar);
+                .pinyinSimilar(pinyinSimilar)
+                .chaiziRate(chaiziRate)
+                .chaiziSimiar(chaiziSimilar);
 
         return context;
     }

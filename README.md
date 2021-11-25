@@ -50,7 +50,7 @@ maven 3.x+
 <dependency>
     <groupId>com.github.houbb</groupId>
     <artifactId>nlp-hanzi-similar</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -83,6 +83,7 @@ double rate = HanziSimilarBs.newInstance()
                 .bushouRate(6)
                 .bihuashuRate(2)
                 .pinyinRate(1)
+                .chaiziRate(8)    
                 .similar('末', '未');
 ```
 
@@ -127,11 +128,12 @@ HanziSimilarBs 中允许自定义的配置列表如下：
 | 10 | sijiaoRate | 四角编码权重 |
 | 12 | sijiaoData | 四角编码数据 |
 | 13 | sijiaoSimilar | 四角编码相似度策略 |
-| 14 | pinyinRate | 拼音权重 |
-| 15 | pinyinData | 拼音数据 |
-| 16 | pinyinSimilar | 拼音相似度策略 |
-| 17 | hanziSimilar | 汉字相似度核心策略 |
-| 18 | userDefineData | 用户自定义数据 |
+| 14 | pinyinData | 拼音数据 |
+| 15 | pinyinSimilar | 拼音相似度策略 |
+| 16 | hanziSimilar | 汉字相似度核心策略 |
+| 17 | userDefineData | 用户自定义数据 |
+| 18 | chaiziRate | 拆字比例 |
+| 19 | chaiziSimlar | 拆字相似度 |
 
 所有的配置都可以基于接口，用户进行自定义。
 
