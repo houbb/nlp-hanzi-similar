@@ -6,6 +6,8 @@
 [![Build Status](https://www.travis-ci.org/houbb/nlp-hanzi-similar.svg?branch=master)](https://www.travis-ci.org/houbb/nlp-hanzi-similar?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/houbb/nlp-hanzi-similar/badge.svg?branch=master)](https://coveralls.io/github/houbb/nlp-hanzi-similar?branch=master)
 
+> [在线体验](https://houbb.github.io/opensource/nlp-hanzi-similar)
+
 ## 创作目的
 
 有一个小伙伴说自己在做语言认知科学方向的课题研究，看了我以前写的 [NLP 中文形近字相似度计算思路](https://houbb.github.io/2020/01/20/nlp-chinese-similar-char)
