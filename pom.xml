@@ -4,7 +4,7 @@
 
     <groupId>com.github.houbb</groupId>
     <artifactId>nlp-hanzi-similar</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0-SNAPSHOT</version>
 
     <properties>
         <!--============================== All Plugins START ==============================-->
@@ -27,10 +27,12 @@
 
         <!--============================== INTER ==============================-->
         <plugin.gen.version>1.0.6</plugin.gen.version>
-        <heaven.version>0.1.145</heaven.version>
+        <heaven.version>0.2.0</heaven.version>
+        <pinyin.version>0.4.0</pinyin.version>
+        <nlp-chaizi.version>1.1.0</nlp-chaizi.version>
 
         <!--============================== OTHER ==============================-->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <apiguardian-api.version>1.0.0</apiguardian-api.version>
     </properties>
 
@@ -46,12 +48,12 @@
             <dependency>
                 <groupId>com.github.houbb</groupId>
                 <artifactId>pinyin</artifactId>
-                <version>0.2.2</version>
+                <version>${pinyin.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.houbb</groupId>
                 <artifactId>nlp-chaizi</artifactId>
-                <version>1.1.0</version>
+                <version>${nlp-chaizi.version}</version>
             </dependency>
 
             <!--============================== OTHER ==============================-->
@@ -110,8 +112,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${plugin.compiler.version}</version>
                 <configuration>
-                    <source>${project.compiler.level}</source>
-                    <target>${project.compiler.level}</target>
+                    <source>8</source>
+                    <target>8</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <compilerArgument>-proc:none</compilerArgument>
                 </configuration>
