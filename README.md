@@ -46,6 +46,8 @@
 
 默认实现了基于 四角编码+拼音+汉字结构+汉字偏旁+笔画数+拆字 的相似度比较。
 
+- 支持返回一个字的相似列表
+
 # 变更日志
 
 > [变更日志](CHANGELOG.md)
@@ -64,7 +66,7 @@ maven 3.x+
 <dependency>
     <groupId>com.github.houbb</groupId>
     <artifactId>nlp-hanzi-similar</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
@@ -119,6 +121,19 @@ double rate = HanziSimilarHelper.similar('人', '入');
 ```
 
 此时的结果为用户自定义的值。
+
+## 返回单个汉字的相似字列表
+
+`HanziSimilarHelper.similarList` 可以返回指定汉字的相似列表，最多支持返回 100 个。
+
+默认返回10个。
+
+### 使用
+
+```java
+List<String> list = HanziSimilarHelper.similarList('爱');
+Assert.assertEquals("[爰, 爯, 受, 爭, 妥, 憂, 李, 爳, 叐, 雙]", list.toString());
+```
 
 # 引导类
 

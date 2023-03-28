@@ -1,6 +1,9 @@
 package com.github.houbb.nlp.hanzi.similar.util;
 
+import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * @author binbin.hou
@@ -37,6 +40,12 @@ public class HanziSimilarHelperTest {
     public void test() {
         //[月丷夫马言卂]
         System.out.println(ChaiziHelper.chai("腾讯的微信"));
+    }
+
+    @Test
+    public void similarListTest() {
+        List<String> list = HanziSimilarHelper.similarList('爱');
+        Assert.assertEquals("[爰, 爯, 受, 爭, 妥, 憂, 李, 爳, 叐, 雙]", list.toString());
     }
 
 }

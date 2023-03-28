@@ -3,6 +3,7 @@ package com.github.houbb.nlp.hanzi.similar.support.similar;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziData;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilar;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
+import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarListData;
 
 /**
  * @author binbin.hou
@@ -104,6 +105,22 @@ public class HanziSimilarContext implements IHanziSimilarContext {
      * 拆字比例
      */
     private double chaiziRate;
+
+    /**
+     * 相似度列表
+     * @since 1.3.0
+     */
+    private IHanziSimilarListData hanziSimilarListData;
+
+    @Override
+    public IHanziSimilarListData hanziSimilarListData() {
+        return hanziSimilarListData;
+    }
+
+    public HanziSimilarContext hanziSimilarListData(IHanziSimilarListData hanziSimilarListData) {
+        this.hanziSimilarListData = hanziSimilarListData;
+        return this;
+    }
 
     @Override
     public String charOne() {

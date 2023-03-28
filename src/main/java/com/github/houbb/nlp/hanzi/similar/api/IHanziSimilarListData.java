@@ -14,6 +14,7 @@ public interface IHanziSimilarListData {
      * 返回数据信息
      * @param word 单词
      * @return 结果
+     * @since 1.3.0
      */
     List<String> similarList(String word);
 

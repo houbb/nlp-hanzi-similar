@@ -122,4 +122,11 @@ public interface IHanziSimilarContext {
      */
     IHanziData<String> sijiaoData();
 
+    /**
+     * 汉字相似度列表
+     * @return 列表
+     * @since 1.3.0
+     */
+    IHanziSimilarListData hanziSimilarListData();
+
 }

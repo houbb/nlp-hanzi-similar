@@ -2,14 +2,21 @@ package com.github.houbb.nlp.hanzi.similar.bs;
 
 import com.github.houbb.heaven.support.instance.impl.Instances;
 import com.github.houbb.heaven.util.common.ArgUtil;
+import com.github.houbb.heaven.util.util.CollectionUtil;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziData;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilar;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
+import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarListData;
 import com.github.houbb.nlp.hanzi.similar.constant.HanziSimilarRateConst;
 import com.github.houbb.nlp.hanzi.similar.core.HanziSimilar;
+import com.github.houbb.nlp.hanzi.similar.core.HanziSimilarListDatas;
 import com.github.houbb.nlp.hanzi.similar.support.data.HanziSimilarDatas;
 import com.github.houbb.nlp.hanzi.similar.support.similar.HanziSimilarContext;
 import com.github.houbb.nlp.hanzi.similar.support.similar.HanziSimilars;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * 引导类
@@ -116,6 +123,19 @@ public final class HanziSimilarBs {
      * 用户自定义的数据
      */
     private IHanziData<Double> userDefineData = HanziSimilarDatas.userDefine();
+
+    /**
+     * 相似列表数据
+     * @since 1.3.0
+     */
+    private IHanziSimilarListData hanziSimilarListData = HanziSimilarListDatas.defaults();
+
+    public HanziSimilarBs hanziSimilarListData(IHanziSimilarListData hanziSimilarListData) {
+        ArgUtil.notNull(hanziSimilarListData, "hanziSimilarListData");
+
+        this.hanziSimilarListData = hanziSimilarListData;
+        return this;
+    }
 
     public HanziSimilarBs bihuashuRate(double bihuashuRate) {
         ArgUtil.notNegative(bihuashuRate, "bihuashuRate");
@@ -224,6 +244,32 @@ public final class HanziSimilarBs {
     public double similar(char one, char two) {
         IHanziSimilarContext context = buildContext(one, two);
         return hanziSimilar.similar(context);
+    }
+
+    /**
+     * 相似的列表数据
+     * @param word 单词
+     * @param limit 限制
+     * @return 结果
+     * @since 1.3.0
+     */
+    public List<String> similarList(char word,
+                                    int limit) {
+        ArgUtil.notNegative(limit, "limit");
+
+        String wordStr = String.valueOf(word);
+
+        List<String> mapList = hanziSimilarListData.similarList(wordStr);
+        if(CollectionUtil.isEmpty(mapList)) {
+            return Collections.emptyList();
+        }
+        int size = Math.min(limit, mapList.size());
+        // 返回新的列表，防御编程。
+        List<String> resultList = new ArrayList<>(size);
+        for(int i = 0; i < size; i++) {
+            resultList.add(mapList.get(i));
+        }
+        return resultList;
     }
 
     private IHanziSimilarContext buildContext(char one, char two) {
