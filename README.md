@@ -32,6 +32,8 @@
 
 [NLP 开源形近字算法补完计划（完结篇）](https://mp.weixin.qq.com/s/T4ubn_nCr2fkW8jui3anSA)
 
+[NLP 开源形近字算法之形近字列表（番外篇）](https://mp.weixin.qq.com/s/WF4PxVftBnaealOU7a06xQ)
+
 [开源项目在线化 中文繁简体转换/敏感词/拼音/分词/汉字相似度/markdown 目录](https://mp.weixin.qq.com/s/8eEvUtW0xS9rPijzoDYc7w)
 
 ## 特性
