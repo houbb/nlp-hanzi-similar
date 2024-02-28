@@ -14,11 +14,13 @@ public class HanziSimilarContext implements IHanziSimilarContext {
     /**
      * 字符 1
      */
+    @Deprecated
     private String charOne;
 
     /**
      * 字符 2
      */
+    @Deprecated
     private String charTwo;
 
     /**

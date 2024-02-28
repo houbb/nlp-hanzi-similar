@@ -12,10 +12,7 @@ import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
 public class BihuashuSimilar implements IHanziSimilar {
 
     @Override
-    public double similar(IHanziSimilarContext similarContext) {
-        String charOne = similarContext.charOne();
-        String charTwo = similarContext.charTwo();
-
+    public double similar(IHanziSimilarContext similarContext, String charOne, String charTwo) {
         Integer numberOne = similarContext.bihuashuData().dataMap().get(charOne);
         Integer numberTwo = similarContext.bihuashuData().dataMap().get(charTwo);
         if(numberOne != null && numberTwo != null) {

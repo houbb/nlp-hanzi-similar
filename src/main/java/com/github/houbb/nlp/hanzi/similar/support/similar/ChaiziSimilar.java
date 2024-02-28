@@ -31,10 +31,7 @@ import java.util.Map;
 public class ChaiziSimilar implements IHanziSimilar {
 
     @Override
-    public double similar(IHanziSimilarContext similarContext) {
-        String hanziOne = similarContext.charOne();
-        String hanziTwo = similarContext.charTwo();
-
+    public double similar(IHanziSimilarContext similarContext, String hanziOne, String hanziTwo) {
         int numberOne = getNumber(hanziOne, similarContext);
         int numberTwo = getNumber(hanziTwo, similarContext);
 

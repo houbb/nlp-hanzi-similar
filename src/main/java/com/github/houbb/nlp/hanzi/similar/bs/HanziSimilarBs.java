@@ -130,6 +130,12 @@ public final class HanziSimilarBs {
      */
     private IHanziSimilarListData hanziSimilarListData = HanziSimilarListDatas.defaults();
 
+    /**
+     * 上文下
+     * @since 1.3.1
+     */
+    private IHanziSimilarContext context = null;
+
     public HanziSimilarBs hanziSimilarListData(IHanziSimilarListData hanziSimilarListData) {
         ArgUtil.notNull(hanziSimilarListData, "hanziSimilarListData");
 
@@ -235,15 +241,19 @@ public final class HanziSimilarBs {
         return this;
     }
 
+    public HanziSimilarBs init() {
+        this.context = buildContext();
+        return this;
+    }
+
     /**
      * 相似度
-     * @param one 第一个
-     * @param two 第二个
+     * @param charOne 第一个
+     * @param charTwo 第二个
      * @return 结果
      */
-    public double similar(char one, char two) {
-        IHanziSimilarContext context = buildContext(one, two);
-        return hanziSimilar.similar(context);
+    public double similar(char charOne, char charTwo) {
+        return hanziSimilar.similar(context, charOne+"", charTwo+"");
     }
 
     /**
@@ -272,11 +282,9 @@ public final class HanziSimilarBs {
         return resultList;
     }
 
-    private IHanziSimilarContext buildContext(char one, char two) {
+    private IHanziSimilarContext buildContext() {
         HanziSimilarContext context = new HanziSimilarContext();
-        context.charOne(one+"")
-                .charTwo(two+"")
-                .userDefineData(userDefineData)
+        context.userDefineData(userDefineData)
                 .bihuashuData(bihuashuData)
                 .bihuashuSimilar(bihuashuSimilar)
                 .bihuashuRate(bihuashuRate)

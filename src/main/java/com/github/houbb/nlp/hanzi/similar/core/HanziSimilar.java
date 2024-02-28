@@ -20,10 +20,7 @@ public class HanziSimilar implements IHanziSimilar {
      * @since 1.0.0
      */
     @Override
-    public double similar(final IHanziSimilarContext context) {
-        final String charOne = context.charOne();
-        final String charTwo = context.charTwo();
-
+    public double similar(final IHanziSimilarContext context, String charOne, String charTwo) {
         //1. 是否相同
         if(charOne.equals(charTwo)) {
             return 1.0;
@@ -39,27 +36,27 @@ public class HanziSimilar implements IHanziSimilar {
         //3. 通过权重计算获取
         //3.1 四角编码
         IHanziSimilar sijiaoSimilar = context.sijiaoSimilar();
-        double sijiaoScore = sijiaoSimilar.similar(context);
+        double sijiaoScore = sijiaoSimilar.similar(context, charOne, charTwo);
 
         //3.2 结构
         IHanziSimilar jiegouSimilar = context.jiegouSimilar();
-        double jiegouScore = jiegouSimilar.similar(context);
+        double jiegouScore = jiegouSimilar.similar(context, charOne, charTwo);
 
         //3.3 部首
         IHanziSimilar bushouSimilar = context.bushouSimilar();
-        double bushouScore = bushouSimilar.similar(context);
+        double bushouScore = bushouSimilar.similar(context, charOne, charTwo);
 
         //3.4 笔画
         IHanziSimilar biahuashuSimilar = context.bihuashuSimilar();
-        double bihuashuScore = biahuashuSimilar.similar(context);
+        double bihuashuScore = biahuashuSimilar.similar(context, charOne, charTwo);
 
         //3.5 拼音
         IHanziSimilar pinyinSimilar = context.pinyinSimilar();
-        double pinyinScore = pinyinSimilar.similar(context);
+        double pinyinScore = pinyinSimilar.similar(context, charOne, charTwo);
 
         //3.6 拆字
         IHanziSimilar chaiziSimiar = context.chaiziSimiar();
-        double chaiziScore = chaiziSimiar.similar(context);
+        double chaiziScore = chaiziSimiar.similar(context, charOne, charTwo);
 
         //4. 计算总分
         double totalScore = sijiaoScore

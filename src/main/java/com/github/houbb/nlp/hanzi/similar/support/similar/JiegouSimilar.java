@@ -12,10 +12,7 @@ import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
 public class JiegouSimilar implements IHanziSimilar {
 
     @Override
-    public double similar(IHanziSimilarContext similarContext) {
-        String charOne = similarContext.charOne();
-        String charTwo = similarContext.charTwo();
-
+    public double similar(IHanziSimilarContext similarContext, String charOne, String charTwo) {
         String jiegouOne = similarContext.jiegouData().dataMap().get(charOne);
         String jiegouTwo = similarContext.jiegouData().dataMap().get(charTwo);
         if(jiegouOne != null && jiegouTwo != null) {

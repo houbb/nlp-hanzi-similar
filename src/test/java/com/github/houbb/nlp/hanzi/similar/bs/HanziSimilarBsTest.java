@@ -17,6 +17,8 @@ public class HanziSimilarBsTest {
                 .bihuashuRate(2)
                 .pinyinRate(1)
                 .chaiziRate(8)
+                // 初始化
+                .init()
                 .similar('末', '未');
 
         System.out.println(rate);

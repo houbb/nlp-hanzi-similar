@@ -68,7 +68,7 @@ maven 3.x+
 <dependency>
     <groupId>com.github.houbb</groupId>
     <artifactId>nlp-hanzi-similar</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 
@@ -102,6 +102,7 @@ double rate = HanziSimilarBs.newInstance()
                 .bihuashuRate(2)
                 .pinyinRate(1)
                 .chaiziRate(8)    
+                .init()
                 .similar('末', '未');
 ```
 
@@ -138,6 +139,54 @@ Assert.assertEquals("[爰, 爯, 受, 爭, 妥, 憂, 李, 爳, 叐, 雙]", list.t
 ```
 
 # 引导类
+
+## 引导类配置写法
+
+```java
+double rate = HanziSimilarBs.newInstance()
+                // 笔画数数据
+                .bihuashuData(HanziSimilarDatas.bihuashu())
+                // 笔画数相似算法
+                .bihuashuSimilar(HanziSimilars.bihuashu())
+                // 笔画数权重
+                .bihuashuRate(HanziSimilarRateConst.BIAHUASHU)
+
+                // 结构数据
+                .jiegouData(HanziSimilarDatas.jiegou())
+                // 结构相似算法
+                .jiegouSimilar(HanziSimilars.jiegou())
+                // 结构权重
+                .jiegouRate(HanziSimilarRateConst.JIEGOU)
+
+                // 部首数据
+                .bushouData(HanziSimilarDatas.bushou())
+                // 部首相似算法
+                .bushouSimilar(HanziSimilars.bushou())
+                // 部首权重
+                .bushouRate(HanziSimilarRateConst.BUSHOU)
+
+                // 四角数据
+                .sijiaoData(HanziSimilarDatas.sijiao())
+                // 四角相似算法
+                .sijiaoSimilar(HanziSimilars.sijiao())
+                // 四角权重
+                .sijiaoRate(HanziSimilarRateConst.SIJIAO)
+
+                // 拼音权重
+                .pinyinRate(HanziSimilarRateConst.PINYIN)
+                // 拼音相似算法
+                .pinyinSimilar(HanziSimilars.pinyin())
+
+                // 拆字权重
+                .chaiziRate(HanziSimilarRateConst.CHAIZI)
+                // 拆字相似算法
+                .chaiziSimilar(HanziSimilars.chaizi())
+                // 初始化
+                .init()
+                
+                // 执行文本相似度对比
+                .similar('末', '未');
+```
 
 ## 说明 
 

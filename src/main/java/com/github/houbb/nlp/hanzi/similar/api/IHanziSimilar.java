@@ -12,6 +12,6 @@ public interface IHanziSimilar {
      * @return 结果
      * @since 1.0.0
      */
-    double similar(final IHanziSimilarContext similarContext);
+    double similar(final IHanziSimilarContext similarContext, String charOne, String charTwo);
 
 }

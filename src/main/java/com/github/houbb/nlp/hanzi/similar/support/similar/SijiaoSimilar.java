@@ -12,10 +12,7 @@ import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilarContext;
 public class SijiaoSimilar implements IHanziSimilar {
 
     @Override
-    public double similar(IHanziSimilarContext similarContext) {
-        String charOne = similarContext.charOne();
-        String charTwo = similarContext.charTwo();
-
+    public double similar(IHanziSimilarContext similarContext, String charOne, String charTwo) {
         String codeOne = similarContext.sijiaoData().dataMap().get(charOne);
         String codeTwo = similarContext.sijiaoData().dataMap().get(charTwo);
         if(codeOne != null && codeTwo != null) {

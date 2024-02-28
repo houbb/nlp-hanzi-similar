@@ -13,10 +13,7 @@ import com.github.houbb.pinyin.util.PinyinHelper;
 public class PinyinSimilar implements IHanziSimilar {
 
     @Override
-    public double similar(IHanziSimilarContext similarContext) {
-        String charOne = similarContext.charOne();
-        String charTwo = similarContext.charTwo();
-
+    public double similar(IHanziSimilarContext similarContext, String charOne, String charTwo) {
         String pinyinOne = PinyinHelper.toPinyin(charOne);
         String pinyinTwo = PinyinHelper.toPinyin(charTwo);
 

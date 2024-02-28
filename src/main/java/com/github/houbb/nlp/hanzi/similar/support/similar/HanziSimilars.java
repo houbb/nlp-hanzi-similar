@@ -1,6 +1,5 @@
 package com.github.houbb.nlp.hanzi.similar.support.similar;
 
-import com.github.houbb.heaven.support.instance.impl.Instances;
 import com.github.houbb.nlp.hanzi.similar.api.IHanziSimilar;
 
 /**
@@ -16,7 +15,7 @@ public final class HanziSimilars {
      * @return 实现
      */
     public static IHanziSimilar bihuashu() {
-        return Instances.singleton(BihuashuSimilar.class);
+        return new BihuashuSimilar();
     }
 
     /**
@@ -24,7 +23,7 @@ public final class HanziSimilars {
      * @return 实现
      */
     public static IHanziSimilar bushou() {
-        return Instances.singleton(BushouSimilar.class);
+        return new BushouSimilar();
     }
 
     /**
@@ -32,7 +31,7 @@ public final class HanziSimilars {
      * @return 实现
      */
     public static IHanziSimilar jiegou() {
-        return Instances.singleton(JiegouSimilar.class);
+        return new JiegouSimilar();
     }
 
     /**
@@ -40,7 +39,7 @@ public final class HanziSimilars {
      * @return 实现
      */
     public static IHanziSimilar pinyin() {
-        return Instances.singleton(PinyinSimilar.class);
+        return new PinyinSimilar();
     }
 
     /**
@@ -48,7 +47,7 @@ public final class HanziSimilars {
      * @return 实现
      */
     public static IHanziSimilar sijiao() {
-        return Instances.singleton(SijiaoSimilar.class);
+        return new SijiaoSimilar();
     }
 
     /**
@@ -57,7 +56,7 @@ public final class HanziSimilars {
      * @since 1.1.0
      */
     public static IHanziSimilar chaizi() {
-        return Instances.singleton(ChaiziSimilar.class);
+        return new ChaiziSimilar();
     }
 
 }
